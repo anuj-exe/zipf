@@ -1,0 +1,682 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
+    <link rel="stylesheet" href="dist/css/jquery.simple-bar-graph.min.css" />
+    <script src="dist/js/jquery.simple-bar-graph.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet/less" href="/stylesheets/main.less" type="text/css" />
+<script src="https://lesscss.googlecode.com/files/less-1.0.30.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Almarai"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu"
+      rel="stylesheet"
+    />
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      body {
+        background: #000;
+      }
+
+
+      nav {
+        import (less) 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+}
+
+      .container {
+        position: relative;
+        width: 25px;
+      }
+
+      .wrap,
+      .circle {
+        -webkit-transition: -webkit-transform 500ms linear;
+        -webkit-transform-style: preserve-3d;
+        -moz-transition: -moz-transform 500ms linear;
+        -moz-transform-style: preserve-3d;
+        width: 30px;
+        height: 30px;
+        margin: auto;
+        margin-left: -8px;
+        margin-top: -24px;
+        position: absolute;
+      }
+
+      .circle {
+        position: absolute;
+        border: 0.3px solid #fff;
+        border-radius: 25px;
+        margin: auto;
+      }
+
+      .circle.c2,
+      .circle.center {
+        border: 0.2px solid #fff;
+        width: 14px;
+        height: 14px;
+        top: round((2.5px - 1.4px) / 2);
+        left: round((2.5px - 1.4px) / 2);
+      }
+      .circle.center {
+        background: #fff;
+        width: 3px;
+        height: 3px;
+        top: round((25px - 3px) / 2);
+        left: round((25px - 3px) / 2);
+        box-shadow: 0 0 1px #fff;
+      }
+
+      .wrap-electron {
+        border: 0px solid #fff;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-animation: electron 3s linear infinite;
+        -moz-animation: electron 3s linear infinite;
+      }
+
+      .electron {
+        width: 2.4px;
+        height: 2.4px;
+        background: #fff;
+        left: 50%;
+        margin-left: -8px;
+        border: none;
+        top: -7px;
+        -webkit-transform-origin: 50% 50%;
+      }
+
+      .c2 .wrap-electron {
+        -webkit-animation: electron 2s linear infinite;
+        -moz-animation: electron 2s linear infinite;
+      }
+
+      .c2 .electron {
+        top: -6px;
+      }
+
+      .wrap {
+        border: 0px solid #666;
+        -webkit-animation: lateral 15s ease-in-out infinite;
+        -moz-animation: lateral 15s ease-in-out infinite;
+      }
+
+      .wrap.r {
+        -webkit-animation: lateralRevert 8s linear infinite;
+        -moz-animation: lateralRevert 8s linear infinite;
+      }
+
+      .vertical {
+        -webkit-animation: vertical 8s linear infinite;
+        -moz-animation: vertical 8s linear infinite;
+      }
+      .horizontal {
+        -webkit-animation: horizontalRevert 6s linear infinite;
+        -moz-animation: horizontalRevert 6s linear infinite;
+      }
+
+      .vertical.c2 {
+        -webkit-animation: vertical 4s linear infinite;
+        -moz-animation: vertical 4s linear infinite;
+      }
+
+      .horizontal.c2 {
+        -webkit-animation: horizontalRevert 3s linear infinite;
+        -moz-animation: horizontalRevert 3s linear infinite;
+      }
+
+      @-webkit-keyframes electron {
+        from {
+          -webkit-transform: rotateZ(0deg);
+        }
+        to {
+          -webkit-transform: rotateZ(360deg);
+        }
+      }
+
+      @-webkit-keyframes horizontal {
+        from {
+          -webkit-transform: rotateY(0deg);
+        }
+        to {
+          -webkit-transform: rotateY(360deg);
+        }
+      }
+
+      @-webkit-keyframes horizontalRevert {
+        from {
+          -webkit-transform: rotateY(360deg);
+        }
+        to {
+          -webkit-transform: rotateY(0deg);
+        }
+      }
+
+      @-webkit-keyframes vertical {
+        from {
+          -webkit-transform: rotateX(0deg);
+        }
+        to {
+          -webkit-transform: rotateX(360deg);
+        }
+      }
+
+      @-webkit-keyframes verticalRevert {
+        from {
+          -webkit-transform: rotateX(360deg);
+        }
+        to {
+          -webkit-transform: rotateX(0deg);
+        }
+      }
+
+      @-webkit-keyframes lateral {
+        from {
+          -webkit-transform: rotateZ(0deg);
+        }
+        to {
+          -webkit-transform: rotateZ(360deg);
+        }
+      }
+
+      @-webkit-keyframes lateralRevert {
+        from {
+          -webkit-transform: rotateZ(360deg);
+        }
+        to {
+          -webkit-transform: rotateZ(0deg);
+        }
+      }
+
+      @-moz-keyframes electron {
+        from {
+          -moz-transform: rotateZ(0deg);
+        }
+        to {
+          -moz-transform: rotateZ(360deg);
+        }
+      }
+
+      @-moz-keyframes horizontal {
+        from {
+          -moz-transform: rotateY(0deg);
+        }
+        to {
+          -moz-transform: rotateY(360deg);
+        }
+      }
+
+      @-moz-keyframes horizontalRevert {
+        from {
+          -moz-transform: rotateY(360deg);
+        }
+        to {
+          -moz-transform: rotateY(0deg);
+        }
+      }
+
+      @-moz-keyframes vertical {
+        from {
+          -moz-transform: rotateX(0deg);
+        }
+        to {
+          -moz-transform: rotateX(360deg);
+        }
+      }
+
+      @-moz-keyframes verticalRevert {
+        from {
+          -moz-transform: rotateX(360deg);
+        }
+        to {
+          -moz-transform: rotateX(0deg);
+        }
+      }
+
+      @-moz-keyframes lateral {
+        from {
+          -moz-transform: rotateZ(0deg);
+        }
+        to {
+          -moz-transform: rotateZ(360deg);
+        }
+      }
+
+      @-moz-keyframes lateralRevert {
+        from {
+          -moz-transform: rotateZ(360deg);
+        }
+        to {
+          -moz-transform: rotateZ(0deg);
+        }
+      }
+      .rightRapper {
+        margin: 0px; /* remove all margins to fit two divs in the container */
+        display: inline-block; /* display block elements in one line */
+      }
+
+      .leftRapper {
+        margin: 0px;
+        display: inline-block;
+      }
+      .recpics{
+        margin: auto; 
+        width: 32%; 
+        display: inline-block;
+      }
+
+
+
+
+
+
+
+
+
+      .simple-bar-graph__bar {
+        background-color: rgb(255, 0, 0);
+        width: 30px;
+        color: white;
+      }
+      .strbtn {
+        align-items: center !important;
+        background: #f5f5fa;
+        border: 0;
+        border-radius: 8px;
+        box-shadow: -10px -10px 30px 0 #fff, 10px 10px 30px 0 #1d0dca17;
+        box-sizing: border-box;
+        color: #2a1f62;
+        cursor: pointer;
+        font-family: "Cascadia Code", Consolas, Monaco, "Andale Mono",
+          "Ubuntu Mono", monospace;
+        justify-content: center !important;
+        line-height: 1.5rem;
+        padding: 15px;
+        text-align: center;
+        transition: 0.2s;
+        touch-action: manipulation;
+        white-space: pre;
+        width: max-content;
+      }
+
+      .strbtn:hover {
+        background: #f8f8ff;
+        box-shadow: -15px -15px 30px 0 #fff, 15px 15px 30px 0 #1d0dca17;
+      }
+
+      @media (min-width: 768px) {
+        .strbtn {
+          padding: 10px;
+        }
+      }
+
+
+      @media only screen and (max-width: 1350px) {
+        .recpics{
+        margin: auto; 
+        width: 49%; 
+        display: inline-block;
+      }
+        .recpicscont{
+          width: 98%;
+        }
+      }
+      @media only screen and (max-width: 920px) {
+        .recpics{
+        margin: auto; 
+        width: 60%; 
+        display: inline-block;
+      }
+        .recpicscont{
+          width: 60%;
+          text-align: center;
+        }
+        .zipfimg{
+        width:60%;
+        margin-top: 0 !important;
+      }
+      .txtar{
+        margin-top: 15px;
+      }
+      }
+      @media only screen and (max-width: 750px) {
+        .recpics{
+        margin: auto; 
+        width: 80%; 
+        display: inline-block;
+      }
+        .recpicscont{
+          width: 80%;
+          text-align: center;
+        }
+        .zipfimg{
+        width:80%;
+        margin-top: 0 !important;
+      }
+      }
+      @media only screen and (max-width: 480px) {
+        .recpics{
+        margin: auto; 
+        width: 100%; 
+        display: inline-block;
+      }
+        .recpicscont{
+          width: 95%;
+          text-align: center;
+        }
+        .zipfimg{
+        width:100%;
+        margin-top: 0 !important;
+      }
+      }
+
+
+      .zipfimg{
+        width:100%;
+        margin-top: -380px;
+      }
+
+
+
+    </style>
+  </head>
+
+  <body>
+    <nav
+        style="background-color: #000 !important; color: white !important"
+        class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top"
+      >
+        <a class="navbar-brand" href="#">
+          <div class="navbar-header" style="font-family: Ubuntu">
+            <!--atom-->
+            <a class="navbar-brand" href="#">
+              <span style="font-size: 30px; color: #fff">a n u j </span>
+              <span class="container leftRapper">
+                <span class="wrap">
+                  <span class="circle horizontal c1">
+                    <span class="wrap-electron">
+                      <span class="circle electron"></span>
+                    </span>
+                  </span>
+                  <span class="circle vertical c1">
+                    <span class="wrap-electron">
+                      <span class="circle electron"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="wrap r">
+                  <span class="circle horizontal c2">
+                    <span class="wrap-electron">
+                      <span class="circle electron"></span>
+                    </span>
+                  </span>
+                  <span class="circle vertical c2">
+                    <span class="wrap-electron">
+                      <span class="circle electron"></span>
+                    </span>
+                  </span>
+                  <span class="circle center"></span>
+                </span>
+              </span>
+            </a>
+            <!--atom-->
+          </div>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse"
+          id="navbarNav"
+          style="
+            font-size: 20px;
+            margin-left: 35%;
+            background-color: #000;
+            opacity: 1;
+            z-index: 9999;
+          "
+        >
+          <ul class="navbar-nav" style="font-family: 'Ubuntu'">
+            <li class="nav-item active" style="color:#fff !important; padding-left: 10px">
+              <a class="nav-link" href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item" style="padding-left: 10px">
+              <a class="nav-link" href="#vsauce">Vsauce on Zipf </a>
+            </li>
+            <li class="nav-item" style="padding-left: 10px">
+              <a class="nav-link" href="https://anuj-exe.github.io/zipf/examples">Examples</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+
+      <div
+      style="margin: auto; margin-top: 15px; text-align: center; width: 80%;"
+      class="hover12 column recpicscont"
+    >
+      <div class="recpics">
+          <img class="zipfimg" src="https://i.ibb.co/sggR6Xb/Graphic-Design-2.png"/>
+      </div>
+      <div class="recpics recpics2">
+        <div class="txtar" style="text-align: center">
+          <textarea
+            style="
+              font-size: 20px;
+              height: 300px;
+              color: white;
+              background-color: rgb(23, 25, 31);
+            "
+            type="text"
+            id="strin"
+            placeholder="Paste your text here and click the button below to get it's distribution graph."
+          ></textarea>
+          <br /><br /><br />
+          <button
+            style="font-size: 20px"
+            class="strbtn"
+            id="strbtn"
+            onclick="getstr()"
+          >
+            ZIPFY
+          </button>
+        </div>
+      </div>
+
+
+
+
+<br><br><br><br>
+
+    <div style="width: 100%; overflow: hidden; text-align: center">
+      <div
+        id="stuff"
+        style="
+          text-align: center;
+          margin: auto;
+          color: white;
+          font-family: Ubuntu;
+          font-size: 18px;
+          width: auto;
+          max-width: 650px;
+        "
+      >
+        <p style="font-size: 20px">
+          The graph will be loaded as soon as the calculations of the given text are done.
+        </p>
+      </div>
+      <br /><br />
+
+      <canvas
+        id="myChart"
+        style="margin: auto; width: 98%; max-width: 650px; height: 500px"
+      ></canvas>
+    </div>
+    <br />
+    <div style="text-align: center">
+      <iframe
+        id="vsauce"
+        width="420"
+        height="345"
+        src="https://www.youtube.com/embed/fCn8zs912OE?autoplay=1&mute=0"
+      >
+      </iframe>
+    </div>
+
+    <script>
+      function getstr() {
+        let str = document.getElementById("strin").value;
+        console.log(str);
+
+        str = str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+        str = str.replace(/\s{2,}/g, " ");
+        str = str.toUpperCase();
+        var stringarrayed = str.split(" ");
+        const occurrences = stringarrayed.reduce(function (acc, curr) {
+          return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+        }, {});
+
+        var ordered = [];
+        for (var i in occurrences) {
+          ordered.push([i, occurrences[i]]);
+        }
+        ordered.sort(function (a, b) {
+          return a[1] - b[1];
+        });
+        var objSorted = {};
+        ordered.forEach(function (item) {
+          objSorted[item[0]] = item[1];
+        });
+
+        var sortedarr = [];
+        for (var z = 0; z < Object.keys(objSorted).length; z++) {
+          sortedarr.push({
+            key: Object.keys(objSorted)[z],
+            value: Object.values(objSorted)[z],
+          });
+        }
+
+        var byval = sortedarr.slice(0);
+        byval.sort(function (a, b) {
+          return a.value - b.value;
+        });
+
+        //data to feed graph
+        var myData = [];
+        var clabel = [];
+        var cdata = [];
+        var numberr = byval.length - 1;
+        var numcounter = numberr;
+        while (numberr >= 0 && numcounter - numberr < 10) {
+          var tempkey = String(byval[numberr].key);
+          myData.push({
+            key: [byval[numberr].key],
+            value: byval[numberr].value,
+          });
+          clabel.push(byval[numberr].key);
+          cdata.push(byval[numberr].value);
+          numberr -= 1;
+        }
+
+        idealn = byval[byval.length - 1].value;
+        idealdist = [];
+        var n = 1;
+        while (n < 11) {
+          idealdist.push(Math.round(idealn / n));
+          n++;
+        }
+
+        console.log(idealdist);
+
+        $("#stuff").simpleBarGraph({
+          data: myData,
+          rowsCount: 5,
+          rowCaptionsWidth: "20px",
+          height: "400px",
+          width: "600px;",
+          delay: 10,
+        });
+
+        //CHARTjs
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var myChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: clabel,
+            datasets: [
+              {
+                label: "Occurences of a word in the string",
+                lineTension: 0,
+                data: cdata,
+                backgroundColor: [
+                  "rgba(255, 99, 132, 0.2)",
+                  "rgba(54, 162, 235, 0.2)",
+                  "rgba(255, 206, 86, 0.2)",
+                  "rgba(75, 192, 192, 0.2)",
+                  "rgba(153, 102, 255, 0.2)",
+                  "rgba(255, 159, 64, 0.2)",
+                ],
+                borderColor: [
+                  "rgba(255, 99, 132, 1)",
+                  "rgba(54, 162, 235, 1)",
+                  "rgba(255, 206, 86, 1)",
+                  "rgba(75, 192, 192, 1)",
+                  "rgba(153, 102, 255, 1)",
+                  "rgba(255, 159, 64, 1)",
+                ],
+                borderWidth: 1,
+              },
+              {
+                label: "Ideal Zipf distribution.",
+                lineTension: 0,
+                data: idealdist,
+                backgroundColor: ["rgba(4, 170, 109, 0.2)"],
+                borderColor: [
+                  "rgba(255, 99, 132, 0.2)",
+                  "rgba(54, 162, 235, 0)",
+                  "rgba(255, 206, 86, 1)",
+                  "rgba(75, 192, 192, 1)",
+                  "rgba(153, 102, 255, 1)",
+                  "rgba(255, 159, 64, 1)",
+                ],
+              },
+            ],
+          },
+          options: {
+            bezierCurve: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
